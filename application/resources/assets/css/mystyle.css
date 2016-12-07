@@ -1,0 +1,95 @@
+.date > i {
+  font-size: 12px;
+}
+#myrooms {
+  color: white;
+}
+#myrooms .property-detail {
+  /* width: 100%; */
+  height: 100%;
+  padding-top: 50px;
+}
+#myrooms .property-detail span {
+  color: white;
+}
+#myrooms .property-detail h3 {
+  color: white;
+}
+#myrooms .property-detail p {
+  color: white;
+}
+#myrooms .property-detail li {
+  color: #ffffff;
+}
+#myrooms .row {
+  background: #007545;
+}
+.sticky .logo-sec img {
+  max-width: 300px;
+}
+.gallery-overlay span {
+  display: none;
+}
+.gallery-overlay h5 {
+  display: none;
+}
+.property-detail {
+  background: rgba(248, 248, 248, 0.58);
+}
+.pagetop {
+  background: rgba(0, 0, 0, 0) url("../images/1.jpg") repeat scroll center center;
+}
+.myoverlay {
+  background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.header-container.transparent header.dark {
+  background: #104d6f;
+}
+.tab-data > p {
+  padding: inherit;
+}
+.darkblue-layer:before {
+  background: #01324D none repeat scroll 0 0;
+}
+.bottom-footer {
+  background: #001F31 none repeat scroll 0 0;
+  float: left;
+  padding: 30px 0;
+  position: relative;
+  width: 100%;
+}
+.carousel {
+  max-height: 75vh;
+  overflow-y: hidden;
+}
+.carousel img {
+  width: 100%;
+}
+.logo-sec {
+  width: 28%;
+}
+.header-container {
+  box-shadow: inherit;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.46);
+}
+p {
+  color: #252656;
+}
+.title h4 {
+  color: #252656;
+}
+.property-detail > span {
+  color: #007545;
+}
+footer .widget-title > span {
+  color: white !important;
+}
+ul.mywhite li a {
+  color: #fff !important;
+}
