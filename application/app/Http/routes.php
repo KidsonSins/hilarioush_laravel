@@ -11,15 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
 
 
-Route::get('admin', function (){
-   return view('backend.dashboard');
 
-});
-Route::auth();
+    Route::get('/', function () {
+        return view('frontend.index');
+    });
 
-Route::get('/home', 'HomeController@index');
+
+    Route::get('admin', function (){
+        return view('backend.dashboard');
+
+    });
+    Route::auth();
+
+
+    Route::get('/home', 'HomeController@index');
