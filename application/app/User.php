@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'photo_id', 'password',
     ];
 
     /**
@@ -23,4 +23,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function photo(){
+
+        return $this->belongsTo('App\Photo');
+
+    }
 }

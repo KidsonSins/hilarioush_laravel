@@ -10,10 +10,32 @@
     <title>Hilarioush Enlish Boarding School - Admin</title>
     <link href="{{ asset('dist/backend/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('dist/backend/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('dist/backend/css/animate.css') }}" rel="stylesheet">
-    <!-- This is a Custom CSS -->
-    <link href="{{ asset('dist/backend/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('dist/backend/css/colors/default.css') }}"  rel="stylesheet">
+    {{--<link href="{{ asset('dist/backend/css/animate.css') }}" rel="stylesheet">--}}
+    {{--<link href="{{ asset('dist/frontend/css/animate.css') }}" rel="stylesheet">--}}
+    {{--<!-- This is a Custom CSS -->--}}
+    {{--<link href="{{ asset('dist/backend/css/style.css') }}" rel="stylesheet">--}}
+    {{--<link href="{{ asset('dist/backend/css/colors/default.css') }}"  rel="stylesheet">--}}
+    <link href="{{ asset('dist/backend/css/hilarioush.css') }}"  rel="stylesheet">
+    <style>
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+            border:1px solid #ccc;
+        }
+        .table > thead > tr > th{
+            border:1px solid #ccc;
+        }
+        .table-bordered{
+            border:1px solid #ccc;
+        }
+        thead{
+            background: #4f5467;
+        }
+        thead tr th{
+            color: #fff;
+        }
+        .white-box{
+            min-height:70vh;
+        }
+    </style>
     @yield('styles')
 
 </head>
@@ -24,7 +46,7 @@
         <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
     </svg>
 </div>
-<div id="wrapper">
+<div id="wrapper" class="remodal-bg">
     <!-- Top Navigation -->
     <nav class="navbar navbar-default navbar-static-top m-b-0">
         <div class="navbar-header">
@@ -51,9 +73,9 @@
 
                 <!-- .user dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="http://placehold.it/128x128" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">{{ Auth::user()->name }}</b> </a>
+                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{{ Auth::user()->photo? asset('uploads/').'/'.Auth::user()->photo->path:'http://placehold.it/128x128' }}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">{{ Auth::user()->name }}</b> </a>
                     <ul class="dropdown-menu dropdown-user scale-up">
-                        <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                        <li><a href="{{ route('admin.users.index') }}"><i class="ti-settings"></i> Account Setting</a></li>
                         <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                     <!-- /.user dropdown-user -->
@@ -85,17 +107,18 @@
                 </li>
                 <!-- User profile-->
                 <li class="user-pro">
-                    <a href="#" class="waves-effect"><img src="http://placehold.it/128x128" alt="user-img"  class="img-circle"> <span class="hide-menu"> {{ Auth::user()->name }}<span class="fa arrow"></span></span></a>
+                    <a href="#" class="waves-effect"><img src="{{ Auth::user()->photo? asset('uploads/').'/'.Auth::user()->photo->path:'http://placehold.it/128x128' }}" alt="user-img"  class="img-circle"> <span class="hide-menu"> {{ Auth::user()->name }}<span class="fa arrow"></span></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>
+                        <li><a href="{{ route('admin.users.index') }}"><i class="ti-settings"></i> Account Setting</a></li>
                         <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                 </li>
                 <!-- User profile-->
                 <li class="nav-small-cap m-t-10">--- Main Menu</li>
-                <li><a href="javascript:void(0)" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa-fw"></i> <span class="hide-menu">Link type </span></a> </li>
+                <li><a href="{{ url('/admin') }}" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa fa-dashboard"></i> <span class="hide-menu">Dashboard</span></a> </li>
+                <li><a href="{{ route('admin.users.index') }}" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa fa-user"></i> <span class="hide-menu">Users</span></a> </li>
                 <li>
-                    <a href="javascript:void(0)" class="waves-effect active"><i class="zmdi zmdi-copy zmdi-hc-fw fa-fw"></i> <span class="hide-menu">Dropdown Link<span class="fa arrow"></span><span class="label label-rouded label-purple pull-right">2</span></span></a>
+                    <a href="javascript:void(0)" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa"></i> <span class="hide-menu">Dropdown Link<span class="fa arrow"></span><span class="label label-rouded label-purple pull-right">2</span></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="javascript:void(0)">Link one</a></li>
                         <li><a href="javascript:void(0)">Link Two</a></li>
@@ -148,19 +171,20 @@
     </div>
     <!-- /#page-wrapper -->
 </div>
-<!-- /#wrapper -->
-<!-- jQuery -->
-<script src="{{ asset('dist/backend/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('dist/backend/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- Sidebar menu plugin JavaScript -->
-<script src="{{ asset('dist/backend/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}../"></script>
-<!--Slimscroll JavaScript For custom scroll-->
-<script src="{{ asset('dist/backend/js/jquery.slimscroll.js') }}"></script>
-<!--Wave Effects -->
-<script src="{{ asset('dist/backend/js/waves.js') }}"></script>
-<!-- Custom Theme JavaScript -->
-<script src="{{ asset('dist/backend/js/custom.min.js') }}"></script>
+{{--<!-- /#wrapper -->--}}
+{{--<!-- jQuery -->--}}
+{{--<script src="{{ asset('dist/backend/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>--}}
+{{--<!-- Bootstrap Core JavaScript -->--}}
+{{--<script src="{{ asset('dist/backend/bootstrap/dist/js/bootstrap.min.js') }}"></script>--}}
+{{--<!-- Sidebar menu plugin JavaScript -->--}}
+{{--<script src="{{ asset('dist/backend/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}../"></script>--}}
+{{--<!--Slimscroll JavaScript For custom scroll-->--}}
+{{--<script src="{{ asset('dist/backend/js/jquery.slimscroll.js') }}"></script>--}}
+{{--<!--Wave Effects -->--}}
+{{--<script src="{{ asset('dist/backend/js/waves.js') }}"></script>--}}
+{{--<!-- Custom Theme JavaScript -->--}}
+{{--<script src="{{ asset('dist/backend/js/custom.min.js') }}"></script>--}}
+<script src="{{ asset('dist/backend/js/hilarioush.js') }}"></script>
 
 @yield('scripts')
 

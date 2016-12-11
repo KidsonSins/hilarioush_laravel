@@ -15,6 +15,7 @@
         .panel-info{
             box-shadow: 4px 5px 12px rgba(79, 84, 103, 0.42);
         }
+
     </style>
 @endsection
 
@@ -54,6 +55,8 @@
                                                     <label for="message-text" class="control-label">Information:</label>
                                                     <textarea class="form-control" id="message-text1"></textarea>
                                                 </div>
+
+
                                             </form>
                                         </div>
                                         <div class="modal-footer">
