@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\UsersCreateRequest;
 use App\Http\Requests\UsersEditRequest;
-
+use Intervention\Image\Facades\Image;
 
 class AdminUsersController extends Controller
 {
@@ -49,11 +49,12 @@ class AdminUsersController extends Controller
         }
 
         if ($request->file('photo_id')){
-            $file = $request->file('photo_id');
+
+            $file= $request->file('photo_id');
             $name = time().$file->getClientOriginalName();
             $file->move('uploads', $name);
-            $photo = Photo::create(['path'=>$name]);
-            $input['photo_id'] = $photo->id;
+            $photo = Photo::create(['path'=> $name]);
+            $input['photo_id']= $photo->id;
         }
         $input['password']= bcrypt($request->password);
         User::create($input);
@@ -121,7 +122,7 @@ class AdminUsersController extends Controller
     {
         $user = User::findOrFail($id);
         if ($user->photo){
-            unlink('dist/backend/uploads/'.$user->photo->path);
+            unlink('uploads/'.$user->photo->path);
         }
         $user->delete();
         return redirect(route('admin.users.index'));

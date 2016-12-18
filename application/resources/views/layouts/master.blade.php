@@ -64,7 +64,7 @@
                                 <div class="about-widget">
                                     <a href="#"><img src="{{ asset('dist/frontend/images/footerlogo.png') }}" alt="" style="max-width:90%;"></a>
                                     <p id="mytypeit">
-                                        Hilarioush English Boarding School, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non sed deserunt similique adipisci et ratione unde illum, nesciunt! Molestias suscipit tempora et? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, tempore. Sed, dolor. .</p>
+                                       {{ str_limit($info->information, 282) }}</p>
                                 </div>
                             </div>
                             <!-- Widget -->
@@ -73,14 +73,19 @@
                             <div class="widget">
                                 <div class="widget-title">
                                     <h4>Major Programs</h4>
-                                    <span>Hilarioush English Boarding School</span>
+                                    <span>{{ $info->name }}</span>
                                 </div>
                                 <ul>
-                                    <li> <i class="fa fa-home"></i>Program one Program one</li>
-                                    <li> <i class="fa fa-deviantart"></i>Program one Program one</li>
-                                    <li> <i class="fa fa-tasks"></i>Program one Program one</li>
-                                    <li> <i class="fa fa-twitch"></i>Program one Program one</li>
-                                    <li> <i class="fa fa-dashboard"></i>Program one Program one</li>
+                                    <?php $i = 0;?>
+
+                                    @foreach( $events as $event)
+
+                                        <li> <i class="fa fa-tasks "></i>{{ str_limit($event->title, 30)}}</li>
+                                        <?php
+                                                $i++;
+                                            if ($i==5) break;
+                                            ?>
+                                    @endforeach
                                 </ul>
                                 <!-- ul -->
                             </div>
@@ -93,11 +98,11 @@
                                     <span>Hilarioush</span>
                                 </div>
                                 <ul class="mywhite">
-                                    <li><a href="">Home</a></li>
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="">Gallery</a></li>
-                                    <li><a href="">News</a></li>
-                                    <li><a href="">Contact us</a></li>
+                                    <li><a href="{{url('/')}}">Home</a></li>
+                                    <li><a href="{{ route('about_page')}}">About Us</a></li>
+                                    <li><a href="{{ route('gallery_page')}}">Gallery</a></li>
+                                    <li><a href="{{ route('news_page')}}">News</a></li>
+                                    <li><a href="{{ route('contact_page')}}">Contact us</a></li>
 
                                 </ul>
                                 <!-- ul -->
@@ -111,11 +116,11 @@
                                     <span>we are not far</span>
                                 </div>
                                 <ul>
-                                    <li><i class="fa fa-home"></i>Address: Kathmandu, Nepal</li>
-                                    <li><i class="fa fa-mobile-phone"></i>Mobile:+977-1-4784428/4784429</li>
-                                    <li><i class="fa fa-clipboard"></i>Email:info@gmail.com</li>
-                                    <li><i class="fa fa-fax"></i>Fax:9841XXXXXX</li>
-                                    <li><i class="fa fa-server"></i>Website:www.hilarioush.edu.np</li>
+                                    <li><i class="fa fa-home"></i>Address: {{ $info->address }}</li>
+                                    <li><i class="fa fa-mobile-phone"></i>Mobile: {{ $info->phone_no }}</li>
+                                    <li><i class="fa fa-clipboard"></i>Email:{{ $info->email }}</li>
+                                    <li><i class="fa fa-fax"></i>Fax:{{ $info->fax_no }}</li>
+                                    <li><i class="fa fa-server"></i>Website:{{ $info->website }}</li>
                                 </ul>
                                 <!-- ul -->
                             </div>
@@ -130,7 +135,7 @@
     <!-- footer -->
     <div class="bottom-footer">
         <div class="container">
-            <p id="mytypeit">&copy; 2015 <a href="#">Hilarioush School</a> - All Rights Reserved - Made By <a href="#">JaVaS</a></p>
+            <p id="mytypeit">&copy; 2016 <a href="#">Hilarioush School</a> - All Rights Reserved - Made By <a href="#">JaVaS</a></p>
         </div>
         <!-- container -->
     </div>

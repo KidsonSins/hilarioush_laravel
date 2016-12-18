@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchoolinfosTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,13 @@ class CreateSchoolinfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('schoolinfos', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->longText('information');
+            $table->string('title');
             $table->string('photo_id');
-            $table->string('address');
-            $table->string('phone_no');
-            $table->string('fax_no');
-            $table->string('website');
-            $table->string('email');
+            $table->longText('detail');
             $table->timestamps();
+
         });
     }
 
@@ -33,6 +29,6 @@ class CreateSchoolinfosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('schoolinfos');
+        Schema::drop('events');
     }
 }

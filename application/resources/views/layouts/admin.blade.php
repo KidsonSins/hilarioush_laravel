@@ -15,7 +15,11 @@
     {{--<!-- This is a Custom CSS -->--}}
     {{--<link href="{{ asset('dist/backend/css/style.css') }}" rel="stylesheet">--}}
     {{--<link href="{{ asset('dist/backend/css/colors/default.css') }}"  rel="stylesheet">--}}
+    <link rel="stylesheet" href="{{ asset('dist/backend/css/remodal.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/backend/css/remodal-default-theme.css') }}">
+
     <link href="{{ asset('dist/backend/css/hilarioush.css') }}"  rel="stylesheet">
+
     <style>
         .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
             border:1px solid #ccc;
@@ -35,7 +39,22 @@
         .white-box{
             min-height:70vh;
         }
+        .modal-open .modal{
+            display: table;
+            min-height: 100vh;
+            min-width: 100vw;
+        }
+        .modal.in.deletewala .modal-dialog{
+            text-align: center;
+            margin: 12% auto;
+        }
+        .remodal-close{
+            left:auto;
+            right:0;
+        }
+
     </style>
+
     @yield('styles')
 
 </head>
@@ -117,29 +136,32 @@
                 <li class="nav-small-cap m-t-10">--- Main Menu</li>
                 <li><a href="{{ url('/admin') }}" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa fa-dashboard"></i> <span class="hide-menu">Dashboard</span></a> </li>
                 <li><a href="{{ route('admin.users.index') }}" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa fa-user"></i> <span class="hide-menu">Users</span></a> </li>
-                <li>
-                    <a href="javascript:void(0)" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa"></i> <span class="hide-menu">Dropdown Link<span class="fa arrow"></span><span class="label label-rouded label-purple pull-right">2</span></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="javascript:void(0)">Link one</a></li>
-                        <li><a href="javascript:void(0)">Link Two</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa-fw"></i> <span class="hide-menu">Multi Dropdown<span class="fa arrow"></span></span></a>
-                    <ul class="nav nav-second-level">
-                        <li> <a href="javascript:void(0)">Second Level Item</a> </li>
-                        <li> <a href="javascript:void(0)">Second Level Item</a> </li>
-                        <li>
-                            <a href="javascript:void(0)" class="waves-effect">Third Level <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li> <a href="javascript:void(0)">Third Level Item</a> </li>
-                                <li> <a href="javascript:void(0)">Third Level Item</a> </li>
-                                <li> <a href="javascript:void(0)">Third Level Item</a> </li>
-                                <li> <a href="javascript:void(0)">Third Level Item</a> </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                <li><a href="{{ route('admin.events.index') }}" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa fa-calendar"></i> <span class="hide-menu">News / Events</span></a> </li>
+                <li><a href="{{ route('admin.downloads.index') }}" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa fa-archive"></i> <span class="hide-menu">Notice / Files</span></a> </li>
+                <li><a href="{{ route('admin.galleryimage.index') }}" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa fa-photo"></i> <span class="hide-menu">Gallery</span></a> </li>
+                {{--<li>--}}
+                    {{--<a href="javascript:void(0)" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa"></i> <span class="hide-menu">Dropdown Link<span class="fa arrow"></span><span class="label label-rouded label-purple pull-right">2</span></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li><a href="javascript:void(0)">Link one</a></li>--}}
+                        {{--<li><a href="javascript:void(0)">Link Two</a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="javascript:void(0)" class="waves-effect"><i class="zmdi zmdi-copy zmdi-hc-fw fa-fw"></i> <span class="hide-menu">Multi Dropdown<span class="fa arrow"></span></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                        {{--<li> <a href="javascript:void(0)">Second Level Item</a> </li>--}}
+                        {{--<li> <a href="javascript:void(0)">Second Level Item</a> </li>--}}
+                        {{--<li>--}}
+                            {{--<a href="javascript:void(0)" class="waves-effect">Third Level <span class="fa arrow"></span></a>--}}
+                            {{--<ul class="nav nav-third-level">--}}
+                                {{--<li> <a href="javascript:void(0)">Third Level Item</a> </li>--}}
+                                {{--<li> <a href="javascript:void(0)">Third Level Item</a> </li>--}}
+                                {{--<li> <a href="javascript:void(0)">Third Level Item</a> </li>--}}
+                                {{--<li> <a href="javascript:void(0)">Third Level Item</a> </li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
             </ul>
         </div>
     </div>
@@ -185,7 +207,56 @@
 {{--<!-- Custom Theme JavaScript -->--}}
 {{--<script src="{{ asset('dist/backend/js/custom.min.js') }}"></script>--}}
 <script src="{{ asset('dist/backend/js/hilarioush.js') }}"></script>
+<script src="{{ asset('dist/backend/js/remodal.min.js') }}"></script>
 
+<!-- Events -->
+<script>
+    $(document).on('opening', '.remodal', function () {
+        console.log('opening');
+    });
+
+    $(document).on('opened', '.remodal', function () {
+        console.log('opened');
+    });
+
+    $(document).on('closing', '.remodal', function (e) {
+        console.log('closing' + (e.reason ? ', reason: ' + e.reason : ''));
+    });
+
+    $(document).on('closed', '.remodal', function (e) {
+        console.log('closed' + (e.reason ? ', reason: ' + e.reason : ''));
+    });
+
+    $(document).on('confirmation', '.remodal', function () {
+        console.log('confirmation');
+    });
+
+    $(document).on('cancellation', '.remodal', function () {
+        console.log('cancellation');
+    });
+
+    //  Usage:
+    //  $(function() {
+    //
+    //    // In this case the initialization function returns the already created instance
+    //    var inst = $('[data-remodal-id=modal]').remodal();
+    //
+    //    inst.open();
+    //    inst.close();
+    //    inst.getState();
+    //    inst.destroy();
+    //  });
+
+    //  The second way to initialize:
+    $('[data-remodal-id=modal2]').remodal({
+        modifier: 'with-red-theme'
+    });
+
+
+    $(document).ready(function () {
+        $(".required_need").attr('required','required');
+    })
+</script>
 @yield('scripts')
 
 </body>

@@ -7,29 +7,6 @@
 
 @endsection
 
-@section('styles')
-    <link rel="stylesheet" href="{{ asset('dist/backend/css/remodal.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/backend/css/remodal-default-theme.css') }}">
-    <style>
-        .modal-open .modal{
-            display: table;
-            min-height: 100vh;
-            min-width: 100vw;
-        }
-        .modal.in.deletewala .modal-dialog{
-            text-align: center;
-            margin: 12% auto;
-        }
-        .remodal-close{
-            left:auto;
-            right:0;
-        }
-
-
-
-    </style>
-
-@endsection
 
 @section('content')
 
@@ -82,6 +59,7 @@
         </div>
     </div>
     <!-- /.row -->
+
     {{--create remodal--}}
     <div class="remodal" data-remodal-id="create_remodal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
         <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
@@ -98,24 +76,24 @@
             {{ csrf_field() }}
             <div class="form-group">
                 {!! Form::label('name', 'Name:') !!}
-                {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                {!! Form::text('name', null, ['class'=>'form-control required_need']) !!}
 
             </div>
             <div class="form-group">
                 {!! Form::label('email', 'Email:') !!}
-                {!! Form::email('email', null, ['class'=>'form-control']) !!}
+                {!! Form::email('email', null, ['class'=>'form-control required_need']) !!}
 
             </div>
 
             <div class="form-group">
                 {!! Form::label('photo_id', 'Photo:') !!}
-                {!! Form::file('photo_id', ['class'=>'form-control']) !!}
+                {!! Form::file('photo_id', ['class'=>'form-control required_need']) !!}
             </div>
 
 
             <div class="form-group">
                 {!! Form::label('password', 'Password:') !!}
-                {!! Form::password('password', ['class'=>'form-control']) !!}
+                {!! Form::password('password', ['class'=>'form-control required_need']) !!}
             </div>
 
 
@@ -198,52 +176,3 @@
 
 @endsection
 
-
-@section('scripts')
-    <script src="{{ asset('dist/backend/js/remodal.min.js') }}"></script>
-
-    <!-- Events -->
-    <script>
-        $(document).on('opening', '.remodal', function () {
-            console.log('opening');
-        });
-
-        $(document).on('opened', '.remodal', function () {
-            console.log('opened');
-        });
-
-        $(document).on('closing', '.remodal', function (e) {
-            console.log('closing' + (e.reason ? ', reason: ' + e.reason : ''));
-        });
-
-        $(document).on('closed', '.remodal', function (e) {
-            console.log('closed' + (e.reason ? ', reason: ' + e.reason : ''));
-        });
-
-        $(document).on('confirmation', '.remodal', function () {
-            console.log('confirmation');
-        });
-
-        $(document).on('cancellation', '.remodal', function () {
-            console.log('cancellation');
-        });
-
-        //  Usage:
-        //  $(function() {
-        //
-        //    // In this case the initialization function returns the already created instance
-        //    var inst = $('[data-remodal-id=modal]').remodal();
-        //
-        //    inst.open();
-        //    inst.close();
-        //    inst.getState();
-        //    inst.destroy();
-        //  });
-
-        //  The second way to initialize:
-        $('[data-remodal-id=modal2]').remodal({
-            modifier: 'with-red-theme'
-        });
-    </script>
-
-@endsection

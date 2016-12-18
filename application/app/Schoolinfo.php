@@ -6,11 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schoolinfo extends Model
 {
-    public $fillable=[
+    protected $fillable=[
 
         'name',
-        'information'
-
+        'information',
+        'photo_id',
+        'website',
+        'fax_no',
+        'phone_no',
+        'address',
+        'email',
     ];
+    public function photo(){
+
+        return $this->belongsTo('App\Photo');
+
+    }
 
 }

@@ -1,7 +1,6 @@
-{% extends 'school/base.html' %}
+@extends('layouts.master')
 
-
-{% block content %}
+@section('content')
 <!--
 <div class="pagetop">
 		<div class="container">
@@ -30,18 +29,18 @@
 									<div class="address-sec">
 										
 										<h4>Get In Touch</h4>
-										<p id="mytypeit">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quos atque veniam incidunt eos, modi fuga saepe, officiis ipsum ratione accusantium nisi placeat soluta esse fugiat? Et sunt iure similique exercitationem, adipisci, optio..</p>
+										<p id="mytypeit">{{ $info->information }}</p>
 										<ul>
-											<li><span><i class="fa fa-home"></i></span> <strong>Address:</strong>Buddhanagar, Ktm , Nepal</li>
-											<li><span><i class="fa fa-phone"></i></span> <strong>Phone:</strong>+977-1-XXXXXX/44XXXXXX</li>
-											<li><span><i class="fa fa-fax"></i></span> <strong>Website:</strong>www.hilarioush.edu.np</li>
-											<li><span><i class="fa fa-envelope"></i></span> <strong>Email:</strong>info@youremail.com</li>
+											<li><span><i class="fa fa-home"></i></span> <strong>Address:</strong>{{ $info->address }}</li>
+											<li><span><i class="fa fa-phone"></i></span> <strong>Phone:</strong>{{ $info->phone_no }}</li>
+											<li><span><i class="fa fa-fax"></i></span> <strong>Website:</strong>{{ $info->website }}</li>
+											<li><span><i class="fa fa-envelope"></i></span> <strong>Email:</strong>{{ $info->email }}</li>
 										</ul>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="contact-img">
-										<img src="images/myimg3.jpg" alt="" class="m-t-85">
+										<img src="{{ asset('uploads/'.$info->photo->path) }}" alt="" class="m-t-85">
 									</div>
 								</div>
 							</div>
@@ -63,36 +62,30 @@
 								</div>
 								<div class="gallery-widget lightbox">
 									<div class="row">
-										
-										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/contact-sidebar/1%20(5).jpg" alt="" /></a></div>
-										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/contact-sidebar/1%20(2).jpg" alt="" /></a></div>
-										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/contact-sidebar/1%20(3).jpg" alt="" /></a></div>
-										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/contact-sidebar/1%20(4).jpg" alt="" /></a></div>
-										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/contact-sidebar/1%20(5).jpg" alt="" /></a></div>
-										<div class="col-md-4" ><a href="http://placehold.it/1000x800" title=""><img src="images/contact-sidebar/1%20(5).jpg" alt="" /></a></div>
+										@foreach($galleryimages as $galleryimage)
+											<div class="col-md-4" ><a href="{{ asset('uploads/gallery/'.$galleryimage->path) }}" title=""><img src="{{ asset('uploads/gallery/'.$galleryimage->path) }}" alt="" /></a></div>
+										@endforeach
 									</div>
 								</div>
-							</div><!-- Widget -->	
-							                    
-                                                    <div class="title">
-							<h4>Send Us Message</h4>
-						</div>
-						<div class="comment-form center">
-<!--							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enm minim veniam, quis nostrud exercitation ullamco.</p>-->
-							<div id="message"></div>
-							<form class="input-fields" method="post" action="http://themes.webinane.com/hotel-room/contact.php" name="contactform" id="contactform">
-								<div class="row">
-									<div class="col-md-12"><input id="name" name="name" type="text" placeholder="Complete Name *"></div>
-									<div class="col-md-12"><input id="email" name="email" type="email" placeholder="Email Address *"></div>
-									<div class="col-md-12"><input type="text" placeholder="Website"></div>
-									<div class="col-md-12"><textarea id="comments" name="comments" placeholder="Enter Your Message"></textarea></div>
-									<div class="col-md-12"><button id="submit" class="book-now submit" type="submit">Submit Now</button></div>
-								</div>												
-							</form>
-						</div>
-						
-														
-							
+							</div><!-- Widget -->
+
+							<div class="h_widget">
+
+								<h1 class="heading-title h_font">National Anthem</h1>
+
+								<p>सयौ थुंगा फूलका हामी एउटै माला नेपाली सर्वभौम भई फैलिएका मेची महाकाली || <br>
+
+									प्रकृतिको कोटी कोटी सम्पदाको आचला वीरहरुका रगतले स्वोतन्त्र र अटल || <br>
+
+									ज्ञानभूमि शान्तिभूमि तराई पहाड हिमाल अखण्ड यो प्यारो हाम्रो मातृभूमि नेपाल || <br>
+
+									बहुल जाति भाषा धर्म सस्कृति छन् विसाल अग्रगामी राष्ट्र हाम्रो जय जय नेपाल || <br>
+								</p>
+
+
+							</div>
+
+
 							
 						</div>
 					</aside>
@@ -100,7 +93,7 @@
 			</div>
 		</div>
 	</section>
-    
-    
-    
-   {% endblock %}
+
+
+
+@endsection

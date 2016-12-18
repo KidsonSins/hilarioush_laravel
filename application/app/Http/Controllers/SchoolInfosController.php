@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Schoolinfo;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class SchoolinfoController extends Controller
+class SchoolInfosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -70,7 +71,9 @@ class SchoolinfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        Schoolinfo::findOrFail(1)->update($input);
+        return redirect('/admin');
     }
 
     /**

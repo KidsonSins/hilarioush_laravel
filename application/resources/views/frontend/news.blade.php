@@ -1,7 +1,6 @@
-{% extends 'school/base.html' %}
+@extends('layouts.master')
 
-
-{% block content %}    
+@section('content')
 <!--my about wala tab-->
 <section>
     <div class="block remove-gap gray-layer p-b-30">
@@ -16,60 +15,21 @@
                                     <!-- <strong>Hilarioush English Boarding School  </strong> -->
                                     <h4>News and Events</h4>
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            
-                                            <div class="item news_item">
-                                                <img class="img-responsive" src="images/myimg3.jpg" alt="" style="height: auto;">
-                                                <div class="details">
-                                                    <a href=""> <h4>News Title</h4></a>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, porro quisquam sint inventore eum numquam.</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @foreach($events as $event)
 
-                                        <div class="col-md-4">
-                                            
-                                            <div class="item news_item">
-                                                <img class="img-responsive" src="images/myimg3.jpg" alt="" style="height: auto;">
-                                                <div class="details">
-                                                    <a href=""> <h4>News Title</h4></a>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, porro quisquam sint inventore eum numquam.</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <div class="col-md-4">
 
-                                        <div class="col-md-4">
-                                            
-                                            <div class="item news_item">
-                                                <img class="img-responsive" src="images/myimg3.jpg" alt="" style="height: auto;">
-                                                <div class="details">
-                                                    <a href=""> <h4>News Title</h4></a>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, porro quisquam sint inventore eum numquam.</p>
+                                                    <div class="item news_item">
+                                                        <img class="img-responsive" src="{{ asset('uploads/news_thumbnail/'.$event->photo->path) }}" alt="" style="height: auto;">
+                                                        <div class="details">
+                                                            <a href="{{ route('event-detail', $event->id) }}"> <h4>{{ $event->title }}</h4></a>
+                                                            <p>{{ $event->detail }}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-4">
-                                            
-                                            <div class="item news_item">
-                                                <img class="img-responsive" src="images/myimg3.jpg" alt="" style="height: auto;">
-                                                <div class="details">
-                                                    <a href=""> <h4>News Title</h4></a>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, porro quisquam sint inventore eum numquam.</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
 
-                                        <div class="col-md-4">
-                                            
-                                            <div class="item news_item">
-                                                <img class="img-responsive" src="images/myimg3.jpg" alt="" style="height: auto;">
-                                                <div class="details">
-                                                    <a href=""> <h4>News Title</h4></a>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, porro quisquam sint inventore eum numquam.</p>
-                                                </div>
-                                            </div>
-                                        </div>
 
 
                                     </div>
@@ -90,5 +50,4 @@
 </section>
 <!-- Tabs Section -->
 
-
-{% endblock %}    
+@endsection

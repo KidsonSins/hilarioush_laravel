@@ -13,24 +13,27 @@
             </ol>
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="{{ asset('dist/frontend/images/myimg3.jpg') }}" alt="..." class="img-responsive">
-                    <div class="carousel-caption">
-                        ...
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="{{ asset('dist/frontend/images/myimg3.jpg') }}" alt="..." class="img-responsive">
-                    <div class="carousel-caption">
-                        ...
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="{{ asset('dist/frontend/images/myimg3.jpg') }}" alt="..." class="img-responsive">
-                    <div class="carousel-caption">
-                        ...
-                    </div>
-                </div>
+                <?php $i=0;?>
+                @foreach($carouselimages as $carouselimage)
+                    @if($i==0)
+                        <div class="item active">
+                            <img src="{{ asset('dist/frontend/images/myimg3.jpg') }}" alt="..." class="img-responsive">
+                            <div class="carousel-caption">
+                                ...
+                            </div>
+                        </div>
+                    @else
+                        <div class="item">
+                            <img src="{{ asset('uploads/gallery/'.$carouselimage->path) }}" alt="..." class="img-responsive">
+                            <div class="carousel-caption">
+                                ...
+                            </div>
+                        </div>
+
+                        @endif
+                    <?php $i++; ?>
+
+               @endforeach
 
 
             </div>
@@ -63,10 +66,10 @@
                                         <h4>Hilarioush English Boarding School</h4>
                                         <p class="text-justify m-b-10">
 
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et ducimus accusantium, vitae earum velit cum? Magni nesciunt, non doloribus harum similique quos earum aut excepturi ut id hic aspernatur, cumque obcaecati tempora quam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ipsam itaque odio cupiditate vero commodi libero cum, dolore obcaecati enim nam at nobis voluptas doloremque, nihil impedit quam iste, totam? Quibusdam officiis eos, culpa tempore libero quidem quas. Rerum delectus explicabo iste ducimus inventore! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente cumque suscipit omnis dolor <span id="example3">voluptate dolores beatae, dolorem eos enim molestiae!
+                                           {{ str_limit($info->information, 635)}}<span id="example3">{{ $info->name }}
                                         </span>
                                         </p>
-                                        <a class="btn btn-success" href="" style="background: transparent;color: black;">Read more</a>
+                                        <a class="btn btn-success" href="{{ url('/about') }}" style="background: transparent;color: black;">Read more</a>
                                     </div>
                                     <!-- tabs-data -->
                                 </div>
@@ -77,39 +80,18 @@
                         <div class="h_news">
                             <h3 class="h_title p-b-15">News and Events</h3>
                             <div id="h_news" class="owl-carousel owl-theme">
-                                <div class="item news_item">
-                                    <img class="img-responsive" src="images/myimg3.jpg" alt="">
-                                    <div class="details">
-                                        <a href=""> <h4>News Title</h4></a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, porro quisquam sint inventore eum numquam.</p>
+                                @foreach($events as $event)
+                                    <div class="item news_item">
+                                        <img class="img-responsive" src="{{ asset('uploads/news_thumbnail/'.$event->photo->path) }}" alt="">
+                                        <div class="details">
+                                            <a href=""> <h4>{{ $event->title }}</h4></a>
+                                            <p>{{ $event->detail }}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
 
-                                <div class="item news_item">
-                                    <img class="img-responsive" src="images/myimg3.jpg" alt="">
-                                    <div class="details">
-                                        <a href=""> <h4>News Title</h4></a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, porro quisquam sint inventore eum numquam.</p>
-                                    </div>
-                                </div>
-
-                                <div class="item news_item">
-                                    <img class="img-responsive" src="images/myimg3.jpg" alt="">
-                                    <div class="details">
-                                        <a href=""> <h4>News Title</h4></a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, porro quisquam sint inventore eum numquam.</p>
-                                    </div>
-                                </div>
-
-                                <div class="item news_item">
-                                    <img class="img-responsive" src="images/myimg3.jpg" alt="">
-                                    <div class="details">
-                                        <a href=""> <h4>News Title</h4></a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, porro quisquam sint inventore eum numquam.</p>
-                                    </div>
-                                </div>
                             </div>
-                            <a class="btn btn-success m-t-25" href="" style="background: transparent;color: black;">See All</a>
+                            <a class="btn btn-success m-t-25" href="{{ route('news_page') }}" style="background: transparent;color: black;">See All</a>
                         </div>
 
                     </div>
@@ -118,41 +100,16 @@
 
                             <h3 class="h_title p-t-70 p-b-15">Notices/Downloads</h3>
                             <ul class="h_ul_setup p-l-0">
+
+                                @foreach($downloads as $download)
                                 <li class="inside_p">
-                                    <a href="">
-                                        <p>Document 1Document 1Document </p>
+                                    <a href="{{ asset('uploads/files/'.$download->path) }}">
+                                        <p>{{ $download->name }} </p>
                                         <button type="button" class="btn btn-primary pull-right m-t-3" style="padding:2px 12px;">Download</button>
                                     </a>
                                     <div class="clearfix"></div>
                                 </li>
-                                <li class="inside_p">
-                                    <a href="">
-                                        <p>Document 1Document 1Document </p>
-                                        <button type="button" class="btn btn-primary pull-right m-t-3" style="padding:2px 12px;">Download</button>
-                                    </a>
-                                    <div class="clearfix"></div>
-                                </li>
-                                <li class="inside_p">
-                                    <a href="">
-                                        <p>Document 1Document 1Document </p>
-                                        <button type="button" class="btn btn-primary pull-right m-t-3" style="padding:2px 12px;">Download</button>
-                                    </a>
-                                    <div class="clearfix"></div>
-                                </li>
-                                <li class="inside_p">
-                                    <a href="">
-                                        <p>Document 1Document 1Document </p>
-                                        <button type="button" class="btn btn-primary pull-right m-t-3" style="padding:2px 12px;">Download</button>
-                                    </a>
-                                    <div class="clearfix"></div>
-                                </li>
-                                <li class="inside_p">
-                                    <a href="">
-                                        <p>Document 1Document 1Document </p>
-                                        <button type="button" class="btn btn-primary pull-right m-t-3" style="padding:2px 12px;">Download</button>
-                                    </a>
-                                    <div class="clearfix"></div>
-                                </li>
+                                @endforeach
 
 
                             </ul>
@@ -160,9 +117,10 @@
                         <div class="h_widget">
                             <h3 class="h_title p-t-15 p-b-15">Principal's Message</h3>
                             <p class="message">
-                                <img src="images/4.jpg" class="img-circle">
+                                <img src="{{ asset('uploads/'.$principal_message->photo->path) }}" class="img-circle">
 
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium obcaecati possimus laborum accusamus impedit, inventore, recusandae molestias rerum praesentium saepe dolore quo aut?
+                                {{ $principal_message->message }}
+
                             </p>
                         </div>
                         <div class="h_widget">
@@ -189,4 +147,5 @@
         <!-- block -->
     </section>
     <!-- Tabs Section -->
+
 @endsection
